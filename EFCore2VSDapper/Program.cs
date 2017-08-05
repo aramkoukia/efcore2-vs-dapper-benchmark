@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BenchmarkDotNet.Running;
+using System;
 
 namespace EFCore2VSDapper
 {
@@ -10,6 +11,8 @@ namespace EFCore2VSDapper
             var result = repo.GetAllProductsByCategory(18);
             Console.WriteLine(result[0].ProductCategory.Name);
             Console.ReadLine();
+
+            var summary = BenchmarkRunnerCore.Run(typeof(EFCore2VsDapper));
         }
     }
 }
