@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EFCore2VSDapper
 {
-    class EFRepository
+    public class EFRepository
     {
         public List<Product> GetAllProductsByCategory(int categoryId)
         {

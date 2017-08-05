@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EFCore2VSDapper
 {
-    class EFCore2VsDapper
+    public class EFCore2VsDapper
     {
         EFRepository _EFRepo;
         DapperRepository _DapperRepo;

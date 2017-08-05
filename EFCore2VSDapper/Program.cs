@@ -7,12 +7,10 @@ namespace EFCore2VSDapper
     {
         static void Main(string[] args)
         {
-            var repo = new EFRepository();
-            var result = repo.GetAllProductsByCategory(18);
-            Console.WriteLine(result[0].ProductCategory.Name);
-            Console.ReadLine();
+            var summary = BenchmarkRunner.Run(typeof(EFCore2VsDapper));
 
-            var summary = BenchmarkRunnerCore.Run(typeof(EFCore2VsDapper));
+            Console.WriteLine("Done");
+            Console.ReadLine();
         }
     }
 }
