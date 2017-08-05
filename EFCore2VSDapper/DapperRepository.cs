@@ -1,7 +1,10 @@
-﻿using EFCore2VSDapper.Models;
+﻿using Dapper;
+using EFCore2VSDapper.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -11,15 +14,11 @@ namespace EFCore2VSDapper
     {
         public List<Product> GetAllProductsByCategory(int categoryId)
         {
-            using (var db = new EFCore2TestContext())
+            using (IDbConnection db = new SqlConnection(@"connection string"))
             {
-                var products = db.Product
-                    .Where(b => b.ProductCategoryId == categoryId)
-                    .OrderBy(b => b.ProductNumber)
-                    .Include(p => p.ProductCategory)
-                    .ToList();
+                return db.Query<Product>
+                ($"SELECT * From [SalesLT].[Product] INNER JOIN [SalesLT].[ProductCategory] ON [SalesLT].[ProductCategory].ProductCategoryId = [SalesLT].[Product].ProductCategoryId WHERE [SalesLT].[ProductCategory].ProductCategoryId ={categoryId}").ToList();
 
-                return products;
             }
         }
     }
